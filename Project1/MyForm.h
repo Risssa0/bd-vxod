@@ -1,4 +1,5 @@
 #pragma once
+#include <sqlite3.h>
 #include "MyForm1.h"
 namespace Project1 {
 

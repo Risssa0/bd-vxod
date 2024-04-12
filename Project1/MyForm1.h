@@ -36,6 +36,7 @@ namespace Project1 {
 		}
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Panel^ panel2;
 	protected:
 
 	protected:
@@ -55,6 +56,7 @@ namespace Project1 {
 		{
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->panel2 = (gcnew System::Windows::Forms::Panel());
 			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -79,12 +81,21 @@ namespace Project1 {
 			this->label1->Text = L"Главное меню";
 			this->label1->Click += gcnew System::EventHandler(this, &MyForm1::label1_Click_1);
 			// 
+			// panel2
+			// 
+			this->panel2->BackColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->panel2->Location = System::Drawing::Point(128, 210);
+			this->panel2->Name = L"panel2";
+			this->panel2->Size = System::Drawing::Size(200, 100);
+			this->panel2->TabIndex = 1;
+			// 
 			// MyForm1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ButtonShadow;
 			this->ClientSize = System::Drawing::Size(564, 439);
+			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->panel1);
 			this->Name = L"MyForm1";
 			this->Text = L"MyForm1";
