@@ -1,6 +1,7 @@
 #pragma once
 #include "sqlite3.h"
 #include <msclr/marshal.h>
+#include <string>
 namespace Project1 {
 
 	using namespace System;
@@ -170,7 +171,27 @@ namespace Project1 {
 	private: System::Void MyForm1_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		sqlite3* db;
+		char* errorMessage;
 
+		String^ personID = textBoxPersonID->Text;
+		String^ name = textBoxName->Text;
+		String^ surname = textBoxSurname.Text;
+		String^ complect = textBoxComplect->Text;
+		String^ fio = textBoxFIO->Text;
+		String^ sum = textBoxSum->Text;
+
+		String^ query = "INSERT INTO Person (PersonID, Name, Surname, Complect, FIO, Sum) VALUES ('" + personID + "', '" + name + "', '" + surname + "', '" + complect + "', '" + fio + "', '" + sum + "');";
+		const char* charQuery = (const char*)(msclr::interop::marshal_as<std::string>(query)).c_str();
+
+		int rc = sqlite3_exec(db, charQuery, NULL, 0, &errorMessage);
+
+		if (rc != SQLITE_OK) {
+			MessageBox::Show("Ошибка при выполнении SQL-запроса: " + gcnew String(errorMessage));
+		}
+		else {
+			MessageBox::Show("Данные успешно добавлены в базу данных!");
+		}
 	}
 private: System::Void textBoxPersonID(System::Object^ sender, System::EventArgs^ e) {
 }
