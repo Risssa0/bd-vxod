@@ -195,22 +195,29 @@ private: System::Void contextMenuStrip1_Opening(System::Object^ sender, System::
 private: System::Void pictureBox2_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ e) {
-	String^ login = textBox2->Text;
-	String^ password = textBox1->Text;
+    String^ login = textBox2->Text;
+    String^ password = textBox1->Text;
 
-	// Проверка логина и пароля
-		if (login == "admin" && password == "admin") {
-			MessageBox::Show("Авторизация успешна!");
+    // Проверка логина и пароля
+    if (login == "admin" && password == "admin") {
+        MessageBox::Show("Авторизация успешна!");
 
-			// Создаем экземпляр новой формы
-			MyForm1^ mainForm = gcnew MyForm1();
-			mainForm->Show(); // Открываем новую форму
+        // Создаем экземпляр новой формы
+        MyForm1^ mainForm = gcnew MyForm1();
+        mainForm->Show(); // Открываем новую форму
+        this->Hide(); // Скрываем текущую форму
 
-			this->Hide(); // Скрываем текущую форму
-		}
-		else {
-			MessageBox::Show("Неверный логин или пароль");
-		}
+        sqlite3* db;
+        int rc = sqlite3_open("guiSQLiteStudio1.db", &db);
+        if (rc) {
+            MessageBox::Show("Ошибка при открытии базы данных!");
+        } else {
+            MessageBox::Show("База данных открыта успешно!");
+            // Теперь у вас есть подключение к базе данных и можете выполнять операции с ней
+        }
+    } else {
+        MessageBox::Show("Неверный логин или пароль");
+    }
 }
 private: System::Void panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 }
