@@ -207,14 +207,6 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
         mainForm->Show(); // Открываем новую форму
         this->Hide(); // Скрываем текущую форму
 
-        sqlite3* db;
-        int rc = sqlite3_open("guiSQLiteStudio1.db", &db);
-        if (rc) {
-            MessageBox::Show("Ошибка при открытии базы данных!");
-        } else {
-            MessageBox::Show("База данных открыта успешно!");
-            // Теперь у вас есть подключение к базе данных и можете выполнять операции с ней
-        }
     } else {
         MessageBox::Show("Неверный логин или пароль");
     }
