@@ -55,6 +55,7 @@ namespace Project1 {
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::Label^ label8;
+	private: System::Windows::Forms::Button^ button2;
 
 	protected:
 
@@ -74,6 +75,7 @@ namespace Project1 {
 		void InitializeComponent(void)
 		{
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
@@ -82,25 +84,37 @@ namespace Project1 {
 			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
-			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// panel1
 			// 
-			this->panel1->BackColor = System::Drawing::Color::Chocolate;
+			this->panel1->BackColor = System::Drawing::Color::BlueViolet;
 			this->panel1->Controls->Add(this->label2);
 			this->panel1->Controls->Add(this->label1);
 			this->panel1->Location = System::Drawing::Point(0, 0);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(570, 117);
+			this->panel1->Size = System::Drawing::Size(537, 117);
 			this->panel1->TabIndex = 0;
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label2->Location = System::Drawing::Point(72, 33);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(428, 31);
+			this->label2->TabIndex = 1;
+			this->label2->Text = L"Добавление в таблицу: Person";
+			this->label2->Click += gcnew System::EventHandler(this, &MyForm1::label2_Click);
 			// 
 			// label1
 			// 
@@ -111,10 +125,10 @@ namespace Project1 {
 			// 
 			// button1
 			// 
-			this->button1->BackColor = System::Drawing::Color::Chocolate;
-			this->button1->Location = System::Drawing::Point(381, 345);
+			this->button1->BackColor = System::Drawing::Color::BlueViolet;
+			this->button1->Location = System::Drawing::Point(269, 345);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(142, 27);
+			this->button1->Size = System::Drawing::Size(142, 23);
 			this->button1->TabIndex = 2;
 			this->button1->Text = L"Добавить";
 			this->button1->UseVisualStyleBackColor = false;
@@ -167,17 +181,6 @@ namespace Project1 {
 			this->textBox6->Size = System::Drawing::Size(149, 20);
 			this->textBox6->TabIndex = 8;
 			this->textBox6->TextChanged += gcnew System::EventHandler(this, &MyForm1::textBoxSum);
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->label2->Location = System::Drawing::Point(72, 33);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(428, 31);
-			this->label2->TabIndex = 1;
-			this->label2->Text = L"Добавление в таблицу: Person";
 			// 
 			// label3
 			// 
@@ -234,12 +237,24 @@ namespace Project1 {
 			this->label8->TabIndex = 14;
 			this->label8->Text = L"Цена";
 			// 
+			// button2
+			// 
+			this->button2->BackColor = System::Drawing::Color::BlueViolet;
+			this->button2->Location = System::Drawing::Point(435, 345);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->TabIndex = 15;
+			this->button2->Text = L"Назад";
+			this->button2->UseVisualStyleBackColor = false;
+			this->button2->Click += gcnew System::EventHandler(this, &MyForm1::button2_Click);
+			// 
 			// MyForm1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ButtonShadow;
-			this->ClientSize = System::Drawing::Size(564, 439);
+			this->ClientSize = System::Drawing::Size(535, 406);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->label6);
@@ -310,6 +325,7 @@ namespace Project1 {
 			Marshal::FreeHGlobal(IntPtr(charFIO));
 			Marshal::FreeHGlobal(IntPtr(charSum));
 		}
+		
 	}
 
 private: System::Void textBoxPersonID(System::Object^ sender, System::EventArgs^ e) {
@@ -325,6 +341,11 @@ private: System::Void textBoxFIO(System::Object^ sender, System::EventArgs^ e) {
 private: System::Void textBoxSum(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	
 }
 };
 }

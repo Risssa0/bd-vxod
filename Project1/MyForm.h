@@ -1,6 +1,6 @@
 #pragma once
 #include <sqlite3.h>
-#include "MyForm1.h"
+#include "MyForm2.h"
 namespace Project1 {
 
 	using namespace System;
@@ -78,7 +78,8 @@ namespace Project1 {
 			// 
 			// panel1
 			// 
-			this->panel1->BackColor = System::Drawing::Color::Purple;
+			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
+				static_cast<System::Int32>(static_cast<System::Byte>(255)));
 			this->panel1->Controls->Add(this->label1);
 			this->panel1->Location = System::Drawing::Point(-1, -22);
 			this->panel1->Name = L"panel1";
@@ -199,11 +200,11 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
     String^ password = textBox1->Text;
 
     // Проверка логина и пароля
-    if (login == "admin" && password == "admin") {
+    if (login == "1" && password == "1") {
         MessageBox::Show("Авторизация успешна!");
 
         // Создаем экземпляр новой формы
-        MyForm1^ mainForm = gcnew MyForm1();
+        MyForm2^ mainForm = gcnew MyForm2();
         mainForm->Show(); // Открываем новую форму
         this->Hide(); // Скрываем текущую форму
 
