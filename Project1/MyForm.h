@@ -203,10 +203,9 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
     if (login == "1" && password == "1") {
         MessageBox::Show("Авторизация успешна!");
 
-        // Создаем экземпляр новой формы
-        MyForm2^ mainForm = gcnew MyForm2();
-        mainForm->Show(); // Открываем новую форму
-        this->Hide(); // Скрываем текущую форму
+		MyForm2^ f1 = gcnew MyForm2();
+		f1->Show();
+		this->Hide();
 
     } else {
         MessageBox::Show("Неверный логин или пароль");

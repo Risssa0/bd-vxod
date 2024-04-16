@@ -285,7 +285,7 @@ namespace Project1 {
 		sqlite3* db;
 		char* errorMessage = nullptr;
 
-		int rc = sqlite3_open("C:\\Users\\Ivan\\source\\repos\\bd-enter-master\\guiSQLiteStudio1.db", &db);
+		int rc = sqlite3_open("C:\\Users\\Ivan\\source\\repos\\bd-vxod\\guiSQLiteStudio1.db", &db);
 		if (rc != SQLITE_OK) {
 			MessageBox::Show("Ошибка при открытии базы данных!");
 		}
@@ -345,7 +345,8 @@ private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e)
 private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	
+	Owner->Show();
+	this->Close();
 }
 };
 }

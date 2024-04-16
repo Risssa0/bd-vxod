@@ -109,10 +109,10 @@ namespace Project1 {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		// —оздаем экземпл€р новой формы
-		MyForm1^ mainForm = gcnew MyForm1();
-		mainForm->Show(); // ќткрываем новую форму
-		this->Hide(); // —крываем текущую форму
+		MyForm1^ f1 = gcnew MyForm1();
+		f1->Owner = this;
+		f1->Show();
+		this->Hide();
 	}
 	};
 }
