@@ -2,6 +2,7 @@
 #include <sqlite3.h>
 #include "MyForm1.h"
 #include "MyForm3.h"
+#include "MyForm4.h"
 namespace Project1 {
 
 	using namespace System;
@@ -41,6 +42,7 @@ namespace Project1 {
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ button3;
 
 	private:
 		/// <summary>
@@ -59,6 +61,7 @@ namespace Project1 {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -109,12 +112,26 @@ namespace Project1 {
 			this->button2->UseVisualStyleBackColor = false;
 			this->button2->Click += gcnew System::EventHandler(this, &MyForm2::button2_Click);
 			// 
+			// button3
+			// 
+			this->button3->BackColor = System::Drawing::Color::BlueViolet;
+			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button3->Location = System::Drawing::Point(342, 151);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(141, 39);
+			this->button3->TabIndex = 3;
+			this->button3->Text = L"Поиск даных";
+			this->button3->UseVisualStyleBackColor = false;
+			this->button3->Click += gcnew System::EventHandler(this, &MyForm2::button3_Click);
+			// 
 			// MyForm2
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ButtonShadow;
 			this->ClientSize = System::Drawing::Size(495, 419);
+			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->panel1);
@@ -136,6 +153,12 @@ namespace Project1 {
 	}
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	MyForm3^ f1 = gcnew MyForm3();
+	f1->Owner = this;
+	f1->Show();
+	this->Hide();
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	MyForm4^ f1 = gcnew MyForm4();
 	f1->Owner = this;
 	f1->Show();
 	this->Hide();
