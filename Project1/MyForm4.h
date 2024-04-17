@@ -4,7 +4,7 @@
 #include <string>
 #include <msclr/marshal_cppstd.h>
 namespace Project1 {
-
+	using namespace System::Runtime::InteropServices;
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -49,6 +49,10 @@ namespace Project1 {
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ PersonID;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ name;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Surname;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Comlpect;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ FIO;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Sum;
 
 
 
@@ -92,6 +96,10 @@ namespace Project1 {
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->PersonID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Surname = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Comlpect = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->FIO = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Sum = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
@@ -103,17 +111,17 @@ namespace Project1 {
 			this->panel1->Controls->Add(this->label1);
 			this->panel1->Location = System::Drawing::Point(-44, -7);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(583, 148);
+			this->panel1->Size = System::Drawing::Size(920, 148);
 			this->panel1->TabIndex = 2;
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label2->Location = System::Drawing::Point(154, 53);
+			this->label2->Location = System::Drawing::Point(204, 49);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(347, 31);
+			this->label2->Size = System::Drawing::Size(600, 55);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Поиск в таблице: Person";
 			this->label2->Click += gcnew System::EventHandler(this, &MyForm4::label2_Click);
@@ -128,15 +136,17 @@ namespace Project1 {
 			// label3
 			// 
 			this->label3->AutoSize = true;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
 			this->label3->Location = System::Drawing::Point(12, 163);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(18, 13);
+			this->label3->Size = System::Drawing::Size(23, 16);
 			this->label3->TabIndex = 11;
 			this->label3->Text = L"ID";
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(51, 160);
+			this->textBox1->Location = System::Drawing::Point(50, 162);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(148, 20);
 			this->textBox1->TabIndex = 12;
@@ -144,9 +154,9 @@ namespace Project1 {
 			// button1
 			// 
 			this->button1->BackColor = System::Drawing::Color::BlueViolet;
-			this->button1->Location = System::Drawing::Point(224, 421);
+			this->button1->Location = System::Drawing::Point(573, 506);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(142, 23);
+			this->button1->Size = System::Drawing::Size(152, 33);
 			this->button1->TabIndex = 13;
 			this->button1->Text = L"Найти";
 			this->button1->UseVisualStyleBackColor = false;
@@ -155,9 +165,9 @@ namespace Project1 {
 			// button2
 			// 
 			this->button2->BackColor = System::Drawing::Color::BlueViolet;
-			this->button2->Location = System::Drawing::Point(435, 421);
+			this->button2->Location = System::Drawing::Point(748, 506);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->Size = System::Drawing::Size(114, 33);
 			this->button2->TabIndex = 17;
 			this->button2->Text = L"Назад";
 			this->button2->UseVisualStyleBackColor = false;
@@ -167,13 +177,13 @@ namespace Project1 {
 			// 
 			this->dataGridView1->AllowUserToDeleteRows = false;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
 				this->PersonID,
-					this->name
+					this->name, this->Surname, this->Comlpect, this->FIO, this->Sum
 			});
 			this->dataGridView1->Location = System::Drawing::Point(224, 160);
 			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->Size = System::Drawing::Size(286, 235);
+			this->dataGridView1->Size = System::Drawing::Size(643, 340);
 			this->dataGridView1->TabIndex = 18;
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm4::dataGridView1_CellContentClick_1);
 			// 
@@ -188,12 +198,32 @@ namespace Project1 {
 			this->name->HeaderText = L"name";
 			this->name->Name = L"name";
 			// 
+			// Surname
+			// 
+			this->Surname->HeaderText = L"Surname";
+			this->Surname->Name = L"Surname";
+			// 
+			// Comlpect
+			// 
+			this->Comlpect->HeaderText = L"Comlpect";
+			this->Comlpect->Name = L"Comlpect";
+			// 
+			// FIO
+			// 
+			this->FIO->HeaderText = L"FIO";
+			this->FIO->Name = L"FIO";
+			// 
+			// Sum
+			// 
+			this->Sum->HeaderText = L"Sum";
+			this->Sum->Name = L"Sum";
+			// 
 			// MyForm4
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ButtonShadow;
-			this->ClientSize = System::Drawing::Size(538, 456);
+			this->ClientSize = System::Drawing::Size(874, 551);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
@@ -225,7 +255,13 @@ private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e)
 		else {
 			MessageBox::Show("База данных успешно открыта!");
 
-			String^ query = "SELECT * FROM Person;";
+			String^ personID = textBox1->Text;
+
+			// Преобразуем значение PersonID в строку в формате ANSI
+			char* charPersonID = static_cast<char*>(Marshal::StringToHGlobalAnsi(personID).ToPointer());
+
+			// Формируем SQL-запрос для поиска строки
+			String^ query = "SELECT * FROM Person WHERE PersonID = '" + personID + "';";
 			std::string queryStr = msclr::interop::marshal_as<std::string>(query);
 
 			// Выполняем SQL-запрос
@@ -237,8 +273,8 @@ private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e)
 				MessageBox::Show("Ошибка при подготовке SQL-запроса!");
 			}
 			else {
-				// Итерируемся по результатам запроса
-				while ((rc = sqlite3_step(stmt)) == SQLITE_ROW) {
+				// Если строка найдена, выводим ее данные в DataGridView
+				if (sqlite3_step(stmt) == SQLITE_ROW) {
 					// Получаем значения из текущей строки
 					String^ personID = gcnew String((char*)sqlite3_column_text(stmt, 0));
 					String^ name = gcnew String((char*)sqlite3_column_text(stmt, 1));
@@ -247,8 +283,12 @@ private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e)
 					String^ fio = gcnew String((char*)sqlite3_column_text(stmt, 4));
 					String^ sum = gcnew String((char*)sqlite3_column_text(stmt, 5));
 
-					// Добавляем новую строку в таблицу
+					// Добавляем новую строку в DataGridView
 					dataGridView1->Rows->Add(personID, name, surname, complect, fio, sum);
+				}
+				else {
+					// Если строка не найдена, выводим сообщение об ошибке
+					MessageBox::Show("Строка с указанным PersonID не найдена!");
 				}
 
 				// Очищаем подготовленный запрос
@@ -256,6 +296,9 @@ private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e)
 			}
 
 			// ...
+
+			// Очищаем выделенную память
+			Marshal::FreeHGlobal(IntPtr(charPersonID));
 		}
 	};
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
