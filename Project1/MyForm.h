@@ -22,6 +22,7 @@ namespace Project1 {
 			//
 			//TODO: добавьте код конструктора
 			//
+			
 		}
 
 	protected:
@@ -35,14 +36,16 @@ namespace Project1 {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Panel^ panel1;
+
 	protected:
-	private: System::Windows::Forms::Label^ label1;
+
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::TextBox^ textBox2;
 	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Panel^ panel1;
+	private: System::Windows::Forms::Label^ label1;
 
 	private: System::ComponentModel::IContainer^ components;
 
@@ -64,42 +67,17 @@ namespace Project1 {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
-			this->panel1 = (gcnew System::Windows::Forms::Panel());
-			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->panel1->SuspendLayout();
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
+			this->panel1->SuspendLayout();
 			this->SuspendLayout();
-			// 
-			// panel1
-			// 
-			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
-				static_cast<System::Int32>(static_cast<System::Byte>(255)));
-			this->panel1->Controls->Add(this->label1);
-			this->panel1->Location = System::Drawing::Point(-1, -22);
-			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(449, 124);
-			this->panel1->TabIndex = 0;
-			this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel1_Paint);
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->BackColor = System::Drawing::Color::DarkOrchid;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 27.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->label1->ForeColor = System::Drawing::Color::Black;
-			this->label1->Location = System::Drawing::Point(103, 53);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(256, 42);
-			this->label1->TabIndex = 0;
-			this->label1->Text = L"Авторизация";
-			this->label1->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
 			// 
 			// pictureBox1
 			// 
@@ -157,25 +135,46 @@ namespace Project1 {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &MyForm::btnLogin_Click);
 			// 
+			// panel1
+			// 
+			this->panel1->BackColor = System::Drawing::Color::BlueViolet;
+			this->panel1->Controls->Add(this->label1);
+			this->panel1->Location = System::Drawing::Point(-23, 1);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(494, 111);
+			this->panel1->TabIndex = 6;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 27.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label1->ForeColor = System::Drawing::SystemColors::ControlText;
+			this->label1->Location = System::Drawing::Point(118, 30);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(256, 42);
+			this->label1->TabIndex = 0;
+			this->label1->Text = L"Авторизация";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->ClientSize = System::Drawing::Size(448, 436);
+			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->pictureBox2);
 			this->Controls->Add(this->pictureBox1);
-			this->Controls->Add(this->panel1);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
-			this->panel1->ResumeLayout(false);
-			this->panel1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
+			this->panel1->ResumeLayout(false);
+			this->panel1->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -201,7 +200,7 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
 
     // Проверка логина и пароля
     if (login == "1" && password == "1") {
-        MessageBox::Show("Авторизация успешна!");
+        
 
 		MyForm2^ f1 = gcnew MyForm2();
 		f1->Show();

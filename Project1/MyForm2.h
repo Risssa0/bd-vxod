@@ -48,7 +48,8 @@ namespace Project1 {
 	private: System::Windows::Forms::Button^ button4;
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
-	private: System::Windows::Forms::Button^ button5;
+
+
 
 	private:
 		/// <summary>
@@ -65,23 +66,21 @@ namespace Project1 {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm2::typeid));
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
-			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// panel1
 			// 
 			this->panel1->BackColor = System::Drawing::Color::BlueViolet;
-			this->panel1->Controls->Add(this->button5);
 			this->panel1->Controls->Add(this->pictureBox2);
 			this->panel1->Controls->Add(this->pictureBox1);
 			this->panel1->Controls->Add(this->label1);
@@ -90,6 +89,24 @@ namespace Project1 {
 			this->panel1->Size = System::Drawing::Size(494, 132);
 			this->panel1->TabIndex = 0;
 			this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm2::panel1_Paint);
+			// 
+			// pictureBox2
+			// 
+			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
+			this->pictureBox2->Location = System::Drawing::Point(40, 35);
+			this->pictureBox2->Name = L"pictureBox2";
+			this->pictureBox2->Size = System::Drawing::Size(63, 67);
+			this->pictureBox2->TabIndex = 2;
+			this->pictureBox2->TabStop = false;
+			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
+			this->pictureBox1->Location = System::Drawing::Point(385, 35);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(63, 67);
+			this->pictureBox1->TabIndex = 1;
+			this->pictureBox1->TabStop = false;
 			// 
 			// label1
 			// 
@@ -154,39 +171,11 @@ namespace Project1 {
 			this->button4->UseVisualStyleBackColor = false;
 			this->button4->Click += gcnew System::EventHandler(this, &MyForm2::button4_Click);
 			// 
-			// pictureBox1
-			// 
-			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(385, 35);
-			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(63, 67);
-			this->pictureBox1->TabIndex = 1;
-			this->pictureBox1->TabStop = false;
-			// 
-			// pictureBox2
-			// 
-			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
-			this->pictureBox2->Location = System::Drawing::Point(40, 35);
-			this->pictureBox2->Name = L"pictureBox2";
-			this->pictureBox2->Size = System::Drawing::Size(63, 67);
-			this->pictureBox2->TabIndex = 2;
-			this->pictureBox2->TabStop = false;
-			// 
-			// button5
-			// 
-			this->button5->Location = System::Drawing::Point(423, 6);
-			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(59, 17);
-			this->button5->TabIndex = 3;
-			this->button5->Text = L"button5";
-			this->button5->UseVisualStyleBackColor = true;
-			this->button5->Click += gcnew System::EventHandler(this, &MyForm2::button5_Click);
-			// 
 			// MyForm2
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::SystemColors::ButtonShadow;
+			this->BackColor = System::Drawing::Color::Black;
 			this->ClientSize = System::Drawing::Size(495, 419);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
@@ -197,8 +186,8 @@ namespace Project1 {
 			this->Text = L"MyForm2";
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 
 		}
@@ -243,6 +232,9 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	}
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();
+}
+private: System::Void button5_Click_1(System::Object^ sender, System::EventArgs^ e) {
+	Application::Exit();
 }
 };
 }

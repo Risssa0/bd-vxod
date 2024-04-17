@@ -75,13 +75,15 @@ namespace Project1 {
 			// 
 			// dataGridView1
 			// 
+			this->dataGridView1->BackgroundColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
 				this->PersonID,
 					this->name, this->surname, this->complect, this->fio, this->sum
 			});
-			this->dataGridView1->Location = System::Drawing::Point(0, 2);
+			this->dataGridView1->Location = System::Drawing::Point(0, -1);
 			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->ReadOnly = true;
 			this->dataGridView1->Size = System::Drawing::Size(644, 434);
 			this->dataGridView1->TabIndex = 0;
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm5::dataGridView1_CellContentClick);
@@ -152,13 +154,14 @@ namespace Project1 {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::SystemColors::ButtonShadow;
-			this->ClientSize = System::Drawing::Size(645, 504);
+			this->BackColor = System::Drawing::Color::Black;
+			this->ClientSize = System::Drawing::Size(643, 504);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->dataGridView1);
 			this->Name = L"MyForm5";
 			this->Text = L"MyForm5";
+			this->Load += gcnew System::EventHandler(this, &MyForm5::MyForm5_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 
@@ -211,6 +214,9 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 
 	// Закрываем базу данных
 	sqlite3_close(db);
+}
+private: System::Void MyForm5_Load(System::Object^ sender, System::EventArgs^ e) {
+
 }
 };
 }

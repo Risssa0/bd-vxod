@@ -138,6 +138,7 @@ namespace Project1 {
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
+			this->label3->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->label3->Location = System::Drawing::Point(12, 163);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(23, 16);
@@ -176,6 +177,7 @@ namespace Project1 {
 			// dataGridView1
 			// 
 			this->dataGridView1->AllowUserToDeleteRows = false;
+			this->dataGridView1->BackgroundColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
 				this->PersonID,
@@ -222,7 +224,7 @@ namespace Project1 {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::SystemColors::ButtonShadow;
+			this->BackColor = System::Drawing::Color::Black;
 			this->ClientSize = System::Drawing::Size(874, 551);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->button2);
@@ -232,6 +234,7 @@ namespace Project1 {
 			this->Controls->Add(this->panel1);
 			this->Name = L"MyForm4";
 			this->Text = L"MyForm4";
+			this->Load += gcnew System::EventHandler(this, &MyForm4::MyForm4_Load);
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
@@ -253,7 +256,7 @@ private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e)
 			MessageBox::Show("Ошибка при открытии базы данных!");
 		}
 		else {
-			MessageBox::Show("База данных успешно открыта!");
+			
 
 			String^ personID = textBox1->Text;
 
@@ -308,6 +311,8 @@ private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e)
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 }
 private: System::Void dataGridView1_CellContentClick_1(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+}
+private: System::Void MyForm4_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

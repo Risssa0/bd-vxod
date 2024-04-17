@@ -102,9 +102,11 @@ namespace Project1 {
 			// label3
 			// 
 			this->label3->AutoSize = true;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold));
+			this->label3->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->label3->Location = System::Drawing::Point(12, 138);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(18, 13);
+			this->label3->Size = System::Drawing::Size(23, 16);
 			this->label3->TabIndex = 10;
 			this->label3->Text = L"ID";
 			// 
@@ -141,7 +143,7 @@ namespace Project1 {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::SystemColors::ButtonShadow;
+			this->BackColor = System::Drawing::Color::Black;
 			this->ClientSize = System::Drawing::Size(538, 394);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
@@ -170,7 +172,6 @@ namespace Project1 {
 			MessageBox::Show("Ошибка при открытии базы данных!");
 		}
 		else {
-			MessageBox::Show("База данных успешно открыта!");
 			String^ personID = textBox1->Text;
 			// Получаем значение поля PersonID из текстового поля
 
