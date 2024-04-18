@@ -83,11 +83,11 @@ namespace Project1 {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 26.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label2->Location = System::Drawing::Point(121, 40);
+			this->label2->Location = System::Drawing::Point(52, 23);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(395, 31);
+			this->label2->Size = System::Drawing::Size(528, 46);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Удаление в таблице: Person";
 			this->label2->Click += gcnew System::EventHandler(this, &MyForm3::label2_Click);

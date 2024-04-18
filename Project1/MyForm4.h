@@ -117,11 +117,11 @@ namespace Project1 {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label2->Location = System::Drawing::Point(204, 49);
+			this->label2->Location = System::Drawing::Point(159, 42);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(600, 55);
+			this->label2->Size = System::Drawing::Size(645, 64);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Поиск в таблице: Person";
 			this->label2->Click += gcnew System::EventHandler(this, &MyForm4::label2_Click);
