@@ -53,6 +53,7 @@ namespace Project1 {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ complect;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ fio;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ sum;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ addres_id;
 
 	private:
 		/// <summary>
@@ -68,14 +69,15 @@ namespace Project1 {
 		void InitializeComponent(void)
 		{
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->PersonID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->surname = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->complect = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->fio = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->sum = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->addres_id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -83,42 +85,16 @@ namespace Project1 {
 			// 
 			this->dataGridView1->BackgroundColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(7) {
 				this->PersonID,
-					this->name, this->surname, this->complect, this->fio, this->sum
+					this->name, this->surname, this->complect, this->fio, this->sum, this->addres_id
 			});
-			this->dataGridView1->Location = System::Drawing::Point(0, -1);
+			this->dataGridView1->Location = System::Drawing::Point(-41, 12);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->ReadOnly = true;
-			this->dataGridView1->Size = System::Drawing::Size(644, 434);
+			this->dataGridView1->Size = System::Drawing::Size(744, 412);
 			this->dataGridView1->TabIndex = 0;
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm5::dataGridView1_CellContentClick);
-			// 
-			// button2
-			// 
-			this->button2->BackColor = System::Drawing::Color::BlueViolet;
-			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->button2->Location = System::Drawing::Point(0, 469);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(644, 33);
-			this->button2->TabIndex = 18;
-			this->button2->Text = L"Назад";
-			this->button2->UseVisualStyleBackColor = false;
-			this->button2->Click += gcnew System::EventHandler(this, &MyForm5::button2_Click);
-			// 
-			// button1
-			// 
-			this->button1->BackColor = System::Drawing::Color::BlueViolet;
-			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->button1->Location = System::Drawing::Point(0, 430);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(644, 33);
-			this->button1->TabIndex = 19;
-			this->button1->Text = L"Показать базу данных";
-			this->button1->UseVisualStyleBackColor = false;
-			this->button1->Click += gcnew System::EventHandler(this, &MyForm5::button1_Click);
 			// 
 			// PersonID
 			// 
@@ -157,15 +133,48 @@ namespace Project1 {
 			this->sum->Name = L"sum";
 			this->sum->ReadOnly = true;
 			// 
+			// button2
+			// 
+			this->button2->BackColor = System::Drawing::Color::BlueViolet;
+			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button2->Location = System::Drawing::Point(0, 469);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(703, 33);
+			this->button2->TabIndex = 18;
+			this->button2->Text = L"Назад";
+			this->button2->UseVisualStyleBackColor = false;
+			this->button2->Click += gcnew System::EventHandler(this, &MyForm5::button2_Click);
+			// 
+			// button1
+			// 
+			this->button1->BackColor = System::Drawing::Color::BlueViolet;
+			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button1->Location = System::Drawing::Point(0, 430);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(703, 33);
+			this->button1->TabIndex = 19;
+			this->button1->Text = L"Показать базу данных";
+			this->button1->UseVisualStyleBackColor = false;
+			this->button1->Click += gcnew System::EventHandler(this, &MyForm5::button1_Click);
+			// 
+			// addres_id
+			// 
+			this->addres_id->HeaderText = L"addres_id";
+			this->addres_id->Name = L"addres_id";
+			this->addres_id->ReadOnly = true;
+			// 
 			// MyForm5
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::Black;
-			this->ClientSize = System::Drawing::Size(643, 504);
+			this->ClientSize = System::Drawing::Size(704, 504);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->dataGridView1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"MyForm5";
 			this->Text = L"MyForm5";
 			this->Load += gcnew System::EventHandler(this, &MyForm5::MyForm5_Load);

@@ -58,6 +58,7 @@ namespace Project1 {
 	private: System::Windows::Forms::Label^ label8;
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::Button^ button3;
 
 	protected:
 
@@ -95,6 +96,7 @@ namespace Project1 {
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -102,11 +104,12 @@ namespace Project1 {
 			// panel1
 			// 
 			this->panel1->BackColor = System::Drawing::Color::BlueViolet;
+			this->panel1->Controls->Add(this->button3);
 			this->panel1->Controls->Add(this->label2);
 			this->panel1->Controls->Add(this->label1);
 			this->panel1->Location = System::Drawing::Point(0, 0);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(537, 117);
+			this->panel1->Size = System::Drawing::Size(566, 117);
 			this->panel1->TabIndex = 0;
 			// 
 			// label2
@@ -114,7 +117,7 @@ namespace Project1 {
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 26.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label2->Location = System::Drawing::Point(-4, 23);
+			this->label2->Location = System::Drawing::Point(8, 37);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(545, 39);
 			this->label2->TabIndex = 1;
@@ -131,9 +134,9 @@ namespace Project1 {
 			// button1
 			// 
 			this->button1->BackColor = System::Drawing::Color::BlueViolet;
-			this->button1->Location = System::Drawing::Point(276, 345);
+			this->button1->Location = System::Drawing::Point(295, 428);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(142, 23);
+			this->button1->Size = System::Drawing::Size(140, 31);
 			this->button1->TabIndex = 2;
 			this->button1->Text = L"Добавить";
 			this->button1->UseVisualStyleBackColor = false;
@@ -260,9 +263,9 @@ namespace Project1 {
 			// button2
 			// 
 			this->button2->BackColor = System::Drawing::Color::BlueViolet;
-			this->button2->Location = System::Drawing::Point(438, 345);
+			this->button2->Location = System::Drawing::Point(477, 428);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->Size = System::Drawing::Size(79, 31);
 			this->button2->TabIndex = 15;
 			this->button2->Text = L"Назад";
 			this->button2->UseVisualStyleBackColor = false;
@@ -274,19 +277,35 @@ namespace Project1 {
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
 			this->pictureBox1->Location = System::Drawing::Point(276, 123);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(235, 216);
+			this->pictureBox1->Size = System::Drawing::Size(290, 282);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
 			this->pictureBox1->TabIndex = 16;
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->WaitOnLoad = true;
 			this->pictureBox1->Click += gcnew System::EventHandler(this, &MyForm1::pictureBox1_Click);
 			// 
+			// button3
+			// 
+			this->button3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button3->ForeColor = System::Drawing::SystemColors::ControlText;
+			this->button3->ImageAlign = System::Drawing::ContentAlignment::TopRight;
+			this->button3->Location = System::Drawing::Point(521, 0);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(45, 40);
+			this->button3->TabIndex = 17;
+			this->button3->Text = L"X";
+			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &MyForm1::button3_Click);
+			// 
 			// MyForm1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::Black;
-			this->ClientSize = System::Drawing::Size(535, 406);
+			this->ClientSize = System::Drawing::Size(568, 471);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->label8);
@@ -303,6 +322,7 @@ namespace Project1 {
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->panel1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"MyForm1";
 			this->Text = L"MyForm1";
 			this->Load += gcnew System::EventHandler(this, &MyForm1::MyForm1_Load);
@@ -325,21 +345,21 @@ namespace Project1 {
 			MessageBox::Show("Ошибка при открытии базы данных!");
 		}
 		else {
-			String^ personID = textBox1->Text;
+			String^ id = textBox1->Text;
 			String^ name = textBox2->Text;
 			String^ surname = textBox3->Text;
 			String^ complect = textBox4->Text;
 			String^ fio = textBox5->Text;
 			String^ sum = textBox6->Text;
 
-			char* charPersonID = static_cast<char*>(Marshal::StringToHGlobalAnsi(personID).ToPointer());
+			char* charid = static_cast<char*>(Marshal::StringToHGlobalAnsi(id).ToPointer());
 			char* charName = static_cast<char*>(Marshal::StringToHGlobalAnsi(name).ToPointer());
 			char* charSurname = static_cast<char*>(Marshal::StringToHGlobalAnsi(surname).ToPointer());
 			char* charComplect = static_cast<char*>(Marshal::StringToHGlobalAnsi(complect).ToPointer());
 			char* charFIO = static_cast<char*>(Marshal::StringToHGlobalAnsi(fio).ToPointer());
 			char* charSum = static_cast<char*>(Marshal::StringToHGlobalAnsi(sum).ToPointer());
 
-			String^ query = "INSERT INTO Person (PersonID, Name, Surname, Complect, FIO, Sum) VALUES ('" + personID + "', '" + name + "', '" + surname + "', '" + complect + "', '" + fio + "', '" + sum + "');";
+			String^ query = "INSERT INTO Person (id, Name, Surname, Complect, FIO, Sum) VALUES ('" + id + "', '" + name + "', '" + surname + "', '" + complect + "', '" + fio + "', '" + sum + "');";
 			std::string queryStr = msclr::interop::marshal_as<std::string>(query);
 
 			rc = sqlite3_exec(db, queryStr.c_str(), NULL, 0, &errorMessage);
@@ -352,7 +372,7 @@ namespace Project1 {
 			}
 
 			sqlite3_close(db);
-			Marshal::FreeHGlobal(IntPtr(charPersonID));
+			Marshal::FreeHGlobal(IntPtr(charid));
 			Marshal::FreeHGlobal(IntPtr(charName));
 			Marshal::FreeHGlobal(IntPtr(charSurname));
 			Marshal::FreeHGlobal(IntPtr(charComplect));
@@ -385,6 +405,10 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void label5_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
+
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	Application::Exit();
 
 }
 };

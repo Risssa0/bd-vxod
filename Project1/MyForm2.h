@@ -48,6 +48,7 @@ namespace Project1 {
 	private: System::Windows::Forms::Button^ button4;
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::Button^ button5;
 
 
 
@@ -66,6 +67,7 @@ namespace Project1 {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm2::typeid));
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
@@ -81,19 +83,36 @@ namespace Project1 {
 			// panel1
 			// 
 			this->panel1->BackColor = System::Drawing::Color::BlueViolet;
+			this->panel1->Controls->Add(this->button5);
 			this->panel1->Controls->Add(this->pictureBox2);
 			this->panel1->Controls->Add(this->pictureBox1);
 			this->panel1->Controls->Add(this->label1);
 			this->panel1->Location = System::Drawing::Point(0, 0);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(494, 132);
+			this->panel1->Size = System::Drawing::Size(569, 132);
 			this->panel1->TabIndex = 0;
 			this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm2::panel1_Paint);
+			// 
+			// button5
+			// 
+			this->button5->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->button5->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button5->ForeColor = System::Drawing::SystemColors::ControlText;
+			this->button5->ImageAlign = System::Drawing::ContentAlignment::TopRight;
+			this->button5->Location = System::Drawing::Point(524, 0);
+			this->button5->Name = L"button5";
+			this->button5->Size = System::Drawing::Size(45, 40);
+			this->button5->TabIndex = 5;
+			this->button5->Text = L"X";
+			this->button5->UseVisualStyleBackColor = true;
+			this->button5->Click += gcnew System::EventHandler(this, &MyForm2::button5_Click_2);
 			// 
 			// pictureBox2
 			// 
 			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
-			this->pictureBox2->Location = System::Drawing::Point(40, 35);
+			this->pictureBox2->Location = System::Drawing::Point(84, 35);
 			this->pictureBox2->Name = L"pictureBox2";
 			this->pictureBox2->Size = System::Drawing::Size(63, 67);
 			this->pictureBox2->TabIndex = 2;
@@ -102,7 +121,7 @@ namespace Project1 {
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(385, 35);
+			this->pictureBox1->Location = System::Drawing::Point(441, 35);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(63, 67);
 			this->pictureBox1->TabIndex = 1;
@@ -113,7 +132,7 @@ namespace Project1 {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 27.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label1->Location = System::Drawing::Point(109, 44);
+			this->label1->Location = System::Drawing::Point(153, 46);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(282, 42);
 			this->label1->TabIndex = 0;
@@ -122,7 +141,7 @@ namespace Project1 {
 			// button1
 			// 
 			this->button1->BackColor = System::Drawing::Color::BlueViolet;
-			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button1->Location = System::Drawing::Point(12, 151);
 			this->button1->Name = L"button1";
@@ -135,9 +154,9 @@ namespace Project1 {
 			// button2
 			// 
 			this->button2->BackColor = System::Drawing::Color::BlueViolet;
-			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button2->Location = System::Drawing::Point(178, 151);
+			this->button2->Location = System::Drawing::Point(215, 151);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(141, 39);
 			this->button2->TabIndex = 2;
@@ -148,9 +167,9 @@ namespace Project1 {
 			// button3
 			// 
 			this->button3->BackColor = System::Drawing::Color::BlueViolet;
-			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button3->Location = System::Drawing::Point(342, 151);
+			this->button3->Location = System::Drawing::Point(415, 151);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(141, 39);
 			this->button3->TabIndex = 3;
@@ -161,11 +180,11 @@ namespace Project1 {
 			// button4
 			// 
 			this->button4->BackColor = System::Drawing::Color::BlueViolet;
-			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->button4->Location = System::Drawing::Point(12, 205);
+			this->button4->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button4->Location = System::Drawing::Point(12, 207);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(471, 39);
+			this->button4->Size = System::Drawing::Size(544, 39);
 			this->button4->TabIndex = 4;
 			this->button4->Text = L"ÁÀÇÀ ÄÀÍÍÛÕ";
 			this->button4->UseVisualStyleBackColor = false;
@@ -176,12 +195,13 @@ namespace Project1 {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::Black;
-			this->ClientSize = System::Drawing::Size(495, 419);
+			this->ClientSize = System::Drawing::Size(568, 471);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->panel1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"MyForm2";
 			this->Text = L"MyForm2";
 			this->panel1->ResumeLayout(false);
@@ -235,6 +255,10 @@ private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e
 }
 private: System::Void button5_Click_1(System::Object^ sender, System::EventArgs^ e) {
 	Application::Exit();
+}
+private: System::Void button5_Click_2(System::Object^ sender, System::EventArgs^ e) {
+	Application::Exit();
+
 }
 };
 }

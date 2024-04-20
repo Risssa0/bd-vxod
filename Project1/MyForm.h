@@ -46,6 +46,7 @@ namespace Project1 {
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Button^ button2;
 
 	private: System::ComponentModel::IContainer^ components;
 
@@ -74,6 +75,7 @@ namespace Project1 {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			this->panel1->SuspendLayout();
@@ -136,6 +138,7 @@ namespace Project1 {
 			// panel1
 			// 
 			this->panel1->BackColor = System::Drawing::Color::BlueViolet;
+			this->panel1->Controls->Add(this->button2);
 			this->panel1->Controls->Add(this->label1);
 			this->panel1->Location = System::Drawing::Point(-23, 1);
 			this->panel1->Name = L"panel1";
@@ -154,6 +157,22 @@ namespace Project1 {
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Авторизация";
 			// 
+			// button2
+			// 
+			this->button2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button2->ForeColor = System::Drawing::SystemColors::ControlText;
+			this->button2->ImageAlign = System::Drawing::ContentAlignment::TopRight;
+			this->button2->Location = System::Drawing::Point(427, 0);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(45, 40);
+			this->button2->TabIndex = 1;
+			this->button2->Text = L"X";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -166,6 +185,7 @@ namespace Project1 {
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->pictureBox2);
 			this->Controls->Add(this->pictureBox1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
@@ -209,6 +229,10 @@ private: System::Void btnLogin_Click(System::Object^ sender, System::EventArgs^ 
     }
 }
 private: System::Void panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	Application::Exit();
+
 }
 };
 }

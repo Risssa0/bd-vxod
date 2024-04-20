@@ -45,6 +45,7 @@ namespace Project1 {
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ button3;
 
 	private:
 		/// <summary>
@@ -66,17 +67,19 @@ namespace Project1 {
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// panel1
 			// 
 			this->panel1->BackColor = System::Drawing::Color::BlueViolet;
+			this->panel1->Controls->Add(this->button3);
 			this->panel1->Controls->Add(this->label2);
 			this->panel1->Controls->Add(this->label1);
 			this->panel1->Location = System::Drawing::Point(-45, -6);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(583, 110);
+			this->panel1->Size = System::Drawing::Size(614, 110);
 			this->panel1->TabIndex = 1;
 			this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm3::panel1_Paint);
 			// 
@@ -120,9 +123,9 @@ namespace Project1 {
 			// button1
 			// 
 			this->button1->BackColor = System::Drawing::Color::BlueViolet;
-			this->button1->Location = System::Drawing::Point(275, 349);
+			this->button1->Location = System::Drawing::Point(305, 427);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(142, 23);
+			this->button1->Size = System::Drawing::Size(155, 32);
 			this->button1->TabIndex = 12;
 			this->button1->Text = L"Удалить";
 			this->button1->UseVisualStyleBackColor = false;
@@ -131,25 +134,42 @@ namespace Project1 {
 			// button2
 			// 
 			this->button2->BackColor = System::Drawing::Color::BlueViolet;
-			this->button2->Location = System::Drawing::Point(451, 349);
+			this->button2->Location = System::Drawing::Point(476, 427);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->Size = System::Drawing::Size(80, 32);
 			this->button2->TabIndex = 16;
 			this->button2->Text = L"Назад";
 			this->button2->UseVisualStyleBackColor = false;
 			this->button2->Click += gcnew System::EventHandler(this, &MyForm3::button2_Click);
+			// 
+			// button3
+			// 
+			this->button3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button3->ForeColor = System::Drawing::SystemColors::ControlText;
+			this->button3->ImageAlign = System::Drawing::ContentAlignment::TopRight;
+			this->button3->Location = System::Drawing::Point(569, 3);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(45, 40);
+			this->button3->TabIndex = 17;
+			this->button3->Text = L"X";
+			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &MyForm3::button3_Click);
 			// 
 			// MyForm3
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::Black;
-			this->ClientSize = System::Drawing::Size(538, 394);
+			this->ClientSize = System::Drawing::Size(568, 471);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->panel1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"MyForm3";
 			this->Text = L"MyForm3";
 			this->panel1->ResumeLayout(false);
@@ -172,14 +192,14 @@ namespace Project1 {
 			MessageBox::Show("Ошибка при открытии базы данных!");
 		}
 		else {
-			String^ personID = textBox1->Text;
+			String^ id = textBox1->Text;
 			// Получаем значение поля PersonID из текстового поля
 
 			// Преобразуем значение PersonID в строку в формате ANSI
-			char* charPersonID = static_cast<char*>(Marshal::StringToHGlobalAnsi(personID).ToPointer());
+			char* charid = static_cast<char*>(Marshal::StringToHGlobalAnsi(id).ToPointer());
 
 			// Формируем SQL-запрос для удаления строки
-			String^ query = "DELETE FROM Person WHERE PersonID = '" + personID + "';";
+			String^ query = "DELETE FROM Person WHERE id = '" + id + "';";
 			std::string queryStr = msclr::interop::marshal_as<std::string>(query);
 
 			// Выполняем SQL-запрос
@@ -196,12 +216,16 @@ namespace Project1 {
 			// ...
 
 			// Очищаем выделенную память
-			Marshal::FreeHGlobal(IntPtr(charPersonID));
+			Marshal::FreeHGlobal(IntPtr(charid));
 		}
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		Owner->Show();
 		this->Close();
 	}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	Application::Exit();
+
+}
 };
 }
