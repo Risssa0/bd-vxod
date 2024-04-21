@@ -116,6 +116,7 @@ namespace Project1 {
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(335, 65);
 			this->textBox1->TabIndex = 3;
+			this->textBox1->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox1_TextChanged);
 			// 
 			// textBox2
 			// 
@@ -261,6 +262,8 @@ private: System::Void panel1_MouseMove(System::Object^ sender, System::Windows::
 }
 private: System::Void panel1_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
 	isDragging = false;
+}
+private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

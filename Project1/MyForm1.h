@@ -60,7 +60,7 @@ namespace Project1 {
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::Button^ button3;
 	private: System::Windows::Forms::Label^ label9;
-	private: System::Windows::Forms::TextBox^ textBox7;
+
 
 	protected:
 
@@ -73,7 +73,9 @@ namespace Project1 {
 		System::ComponentModel::Container ^components;
 	private:
 		bool isDragging = false;
-		Point startPoint;
+	private: System::Windows::Forms::ComboBox^ comboBox1;
+	private: System::Windows::Forms::Button^ button4;
+		   Point startPoint;
 
 
 #pragma region Windows Form Designer generated code
@@ -104,7 +106,8 @@ namespace Project1 {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->label9 = (gcnew System::Windows::Forms::Label());
-			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
+			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -162,9 +165,9 @@ namespace Project1 {
 			// button1
 			// 
 			this->button1->BackColor = System::Drawing::Color::BlueViolet;
-			this->button1->Location = System::Drawing::Point(295, 428);
+			this->button1->Location = System::Drawing::Point(385, 428);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(140, 31);
+			this->button1->Size = System::Drawing::Size(103, 31);
 			this->button1->TabIndex = 2;
 			this->button1->Text = L"Добавить";
 			this->button1->UseVisualStyleBackColor = false;
@@ -291,9 +294,9 @@ namespace Project1 {
 			// button2
 			// 
 			this->button2->BackColor = System::Drawing::Color::BlueViolet;
-			this->button2->Location = System::Drawing::Point(477, 428);
+			this->button2->Location = System::Drawing::Point(494, 428);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(79, 31);
+			this->button2->Size = System::Drawing::Size(62, 31);
 			this->button2->TabIndex = 15;
 			this->button2->Text = L"Назад";
 			this->button2->UseVisualStyleBackColor = false;
@@ -324,12 +327,27 @@ namespace Project1 {
 			this->label9->Text = L"addres_id";
 			this->label9->Click += gcnew System::EventHandler(this, &MyForm1::label9_Click);
 			// 
-			// textBox7
+			// comboBox1
 			// 
-			this->textBox7->Location = System::Drawing::Point(101, 388);
-			this->textBox7->Name = L"textBox7";
-			this->textBox7->Size = System::Drawing::Size(149, 20);
-			this->textBox7->TabIndex = 18;
+			this->comboBox1->FormattingEnabled = true;
+			this->comboBox1->Location = System::Drawing::Point(101, 386);
+			this->comboBox1->Name = L"comboBox1";
+			this->comboBox1->Size = System::Drawing::Size(147, 21);
+			this->comboBox1->TabIndex = 18;
+			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm1::comboBox1_SelectedIndexChanged);
+			// 
+			// button4
+			// 
+			this->button4->BackColor = System::Drawing::Color::BlueViolet;
+			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button4->Location = System::Drawing::Point(255, 428);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(124, 31);
+			this->button4->TabIndex = 19;
+			this->button4->Text = L"Получить адреса";
+			this->button4->UseVisualStyleBackColor = false;
+			this->button4->Click += gcnew System::EventHandler(this, &MyForm1::button4_Click);
 			// 
 			// MyForm1
 			// 
@@ -337,7 +355,8 @@ namespace Project1 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::Black;
 			this->ClientSize = System::Drawing::Size(568, 471);
-			this->Controls->Add(this->textBox7);
+			this->Controls->Add(this->button4);
+			this->Controls->Add(this->comboBox1);
 			this->Controls->Add(this->label9);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->button2);
@@ -374,7 +393,8 @@ namespace Project1 {
 		sqlite3* db;
 		char* errorMessage = nullptr;
 
-		int rc = sqlite3_open("C:\\Users\\Ivan\\source\\repos\\bd-vxod\\guiSQLiteStudio1.db", &db);
+		int rc = sqlite3_open("C:\\Users\\Ivan\\source\\repos\\bd-vxod\\guiSQLiteStudio1.db", &db);// ТУТ ВАШЕ РАСПОЛОЖЕНИЕ БД, КОТОРУЮ Я ВАМ СКИНУ))!!!!!!!!!!!!!
+
 
 		if (rc != SQLITE_OK) {
 			MessageBox::Show("Ошибка при открытии базы данных!");
@@ -386,7 +406,7 @@ namespace Project1 {
 			String^ complect = textBox4->Text;
 			String^ fio = textBox5->Text;	
 			String^ sum = textBox6->Text;
-			String^ address_id = textBox7->Text;
+			String^ address_id = comboBox1->Text;
 
 			char* charid = static_cast<char*>(Marshal::StringToHGlobalAnsi(id).ToPointer());
 			char* charName = static_cast<char*>(Marshal::StringToHGlobalAnsi(name).ToPointer());
@@ -478,6 +498,45 @@ private: System::Void panel1_MouseMove_1(System::Object^ sender, System::Windows
 private: System::Void panel1_MouseUp_1(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
 	isDragging = false;
 
+}
+private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ query = "SELECT id FROM Address;";
+	std::string queryStr = msclr::interop::marshal_as<std::string>(query);
+
+	sqlite3* db;
+	char* errorMessage = nullptr;
+	int rc = sqlite3_open("C:\\Users\\Ivan\\source\\repos\\bd-vxod\\guiSQLiteStudio1.db", &db);
+
+	// Выполняем SQL-запрос
+	sqlite3_stmt* stmt;
+	rc = sqlite3_prepare_v2(db, queryStr.c_str(), -1, &stmt, NULL);
+
+	// Обрабатываем результат выполнения запроса
+	if (rc != SQLITE_OK) {
+		MessageBox::Show("Ошибка при подготовке SQL-запроса!");
+		sqlite3_close(db);
+		return;
+	}
+
+	// Очищаем ComboBox
+	comboBox1->Items->Clear();
+
+	// Итерируемся по результатам запроса и выводим данные в ComboBox
+	while ((rc = sqlite3_step(stmt)) == SQLITE_ROW) {
+		// Получаем значение id из текущей строки
+		String^ id = gcnew String((char*)sqlite3_column_text(stmt, 0));
+
+		// Добавляем id в ComboBox
+		comboBox1->Items->Add(id);
+	}
+
+	// Очищаем подготовленный запрос
+	sqlite3_finalize(stmt);
+
+	// Закрываем базу данных
+	sqlite3_close(db);
 }
 };
 }

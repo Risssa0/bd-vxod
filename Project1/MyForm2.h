@@ -160,26 +160,24 @@ namespace Project1 {
 			// button2
 			// 
 			this->button2->BackColor = System::Drawing::Color::BlueViolet;
-			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
+			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 14.25F, System::Drawing::FontStyle::Bold));
 			this->button2->Location = System::Drawing::Point(215, 151);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(141, 39);
 			this->button2->TabIndex = 2;
-			this->button2->Text = L"Удалить данные";
+			this->button2->Text = L"Удалить";
 			this->button2->UseVisualStyleBackColor = false;
 			this->button2->Click += gcnew System::EventHandler(this, &MyForm2::button2_Click);
 			// 
 			// button3
 			// 
 			this->button3->BackColor = System::Drawing::Color::BlueViolet;
-			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
+			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 14.25F, System::Drawing::FontStyle::Bold));
 			this->button3->Location = System::Drawing::Point(415, 151);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(141, 39);
 			this->button3->TabIndex = 3;
-			this->button3->Text = L"Поиск даных";
+			this->button3->Text = L"Поиск";
 			this->button3->UseVisualStyleBackColor = false;
 			this->button3->Click += gcnew System::EventHandler(this, &MyForm2::button3_Click);
 			// 
@@ -220,6 +218,10 @@ namespace Project1 {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		sqlite3* db;
+		char* errorMessage = nullptr;
+		int rc = sqlite3_open("C:\\Users\\Ivan\\source\\repos\\bd-vxod\\guiSQLiteStudio1.db", &db);
+
 		MyForm1^ f1 = gcnew MyForm1();
 		f1->Owner = this;
 		f1->Show();
@@ -247,7 +249,7 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 
 		sqlite3* db;
 		char* errorMessage = nullptr;
-		int rc = sqlite3_open("C:\\Users\\Ivan\\source\\repos\\bd-vxod\\guiSQLiteStudio1.db", &db);
+		int rc = sqlite3_open("C:\\Users\\Ivan\\source\\repos\\bd-vxod\\guiSQLiteStudio1.db", &db); // ТУТ ВАШЕ РАСПОЛОЖЕНИЕ БД, КОТОРУЮ Я ВАМ СКИНУ))!!!!!!!!!!!!!
 
 		// Проверяем, открыта ли база данных
 		if (rc != SQLITE_OK) {

@@ -268,7 +268,7 @@ private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e)
 		sqlite3* db;
 		char* errorMessage = nullptr;
 
-		int rc = sqlite3_open("C:\\Users\\Ivan\\source\\repos\\bd-vxod\\guiSQLiteStudio1.db", &db);
+		int rc = sqlite3_open("C:\\Users\\Ivan\\source\\repos\\bd-vxod\\guiSQLiteStudio1.db", &db);// ТУТ ВАШЕ РАСПОЛОЖЕНИЕ БД, КОТОРУЮ Я ВАМ СКИНУ))!!!!!!!!!!!!!
 		if (rc != SQLITE_OK) {
 			MessageBox::Show("Ошибка при открытии базы данных!");
 		}
