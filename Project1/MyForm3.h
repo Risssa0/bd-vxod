@@ -52,6 +52,9 @@ namespace Project1 {
 		/// Обязательная переменная конструктора.
 		/// </summary>
 		System::ComponentModel::Container^ components;
+	private:
+		bool isDragging = false;
+		Point startPoint;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -61,13 +64,13 @@ namespace Project1 {
 		void InitializeComponent(void)
 		{
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -82,13 +85,32 @@ namespace Project1 {
 			this->panel1->Size = System::Drawing::Size(614, 110);
 			this->panel1->TabIndex = 1;
 			this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm3::panel1_Paint);
+			this->panel1->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm3::panel1_MouseDown);
+			this->panel1->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm3::panel1_MouseMove);
+			this->panel1->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm3::panel1_MouseUp);
+			// 
+			// button3
+			// 
+			this->button3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button3->ForeColor = System::Drawing::SystemColors::ControlText;
+			this->button3->ImageAlign = System::Drawing::ContentAlignment::TopRight;
+			this->button3->Location = System::Drawing::Point(569, 3);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(45, 40);
+			this->button3->TabIndex = 17;
+			this->button3->Text = L"X";
+			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &MyForm3::button3_Click);
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 26.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label2->Location = System::Drawing::Point(52, 23);
+			this->label2->Location = System::Drawing::Point(57, 32);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(528, 46);
 			this->label2->TabIndex = 1;
@@ -142,22 +164,6 @@ namespace Project1 {
 			this->button2->UseVisualStyleBackColor = false;
 			this->button2->Click += gcnew System::EventHandler(this, &MyForm3::button2_Click);
 			// 
-			// button3
-			// 
-			this->button3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->button3->ForeColor = System::Drawing::SystemColors::ControlText;
-			this->button3->ImageAlign = System::Drawing::ContentAlignment::TopRight;
-			this->button3->Location = System::Drawing::Point(569, 3);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(45, 40);
-			this->button3->TabIndex = 17;
-			this->button3->Text = L"X";
-			this->button3->UseVisualStyleBackColor = true;
-			this->button3->Click += gcnew System::EventHandler(this, &MyForm3::button3_Click);
-			// 
 			// MyForm3
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -171,6 +177,7 @@ namespace Project1 {
 			this->Controls->Add(this->panel1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"MyForm3";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MyForm3";
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
@@ -225,6 +232,28 @@ namespace Project1 {
 	}
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	Application::Exit();
+
+}
+private: System::Void panel1_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	if (e->Button == System::Windows::Forms::MouseButtons::Left) {
+		isDragging = true;
+		startPoint = e->Location;
+	}
+}
+private: System::Void panel1_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	if (isDragging) {
+		Point newLocation;
+		newLocation.X = this->Location.X + (e->Location.X - startPoint.X);
+		newLocation.Y = this->Location.Y + (e->Location.Y - startPoint.Y);
+
+		// You might not need bounds checking for the form itself
+		// unless you want to restrict movement within the screen
+
+		this->Location = newLocation;
+	}
+}
+private: System::Void panel1_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	isDragging = false;
 
 }
 };

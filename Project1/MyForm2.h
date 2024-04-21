@@ -57,6 +57,9 @@ namespace Project1 {
 		/// Обязательная переменная конструктора.
 		/// </summary>
 		System::ComponentModel::Container ^components;
+	private:
+		bool isDragging = false;
+		Point startPoint;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -92,6 +95,9 @@ namespace Project1 {
 			this->panel1->Size = System::Drawing::Size(569, 132);
 			this->panel1->TabIndex = 0;
 			this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm2::panel1_Paint);
+			this->panel1->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm2::panel1_MouseDown);
+			this->panel1->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm2::panel1_MouseMove);
+			this->panel1->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm2::panel1_MouseUp);
 			// 
 			// button5
 			// 
@@ -203,6 +209,7 @@ namespace Project1 {
 			this->Controls->Add(this->panel1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"MyForm2";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MyForm2";
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
@@ -258,6 +265,28 @@ private: System::Void button5_Click_1(System::Object^ sender, System::EventArgs^
 }
 private: System::Void button5_Click_2(System::Object^ sender, System::EventArgs^ e) {
 	Application::Exit();
+
+}
+private: System::Void panel1_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	if (e->Button == System::Windows::Forms::MouseButtons::Left) {
+		isDragging = true;
+		startPoint = e->Location;
+	}
+}
+private: System::Void panel1_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	if (isDragging) {
+		Point newLocation;
+		newLocation.X = this->Location.X + (e->Location.X - startPoint.X);
+		newLocation.Y = this->Location.Y + (e->Location.Y - startPoint.Y);
+
+		// You might not need bounds checking for the form itself
+		// unless you want to restrict movement within the screen
+
+		this->Location = newLocation;
+	}
+}
+private: System::Void panel1_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	isDragging = false;
 
 }
 };

@@ -59,6 +59,8 @@ namespace Project1 {
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Label^ label9;
+	private: System::Windows::Forms::TextBox^ textBox7;
 
 	protected:
 
@@ -69,6 +71,10 @@ namespace Project1 {
 		/// Обязательная переменная конструктора.
 		/// </summary>
 		System::ComponentModel::Container ^components;
+	private:
+		bool isDragging = false;
+		Point startPoint;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -79,6 +85,7 @@ namespace Project1 {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm1::typeid));
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
@@ -96,7 +103,8 @@ namespace Project1 {
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->label9 = (gcnew System::Windows::Forms::Label());
+			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -111,6 +119,26 @@ namespace Project1 {
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(566, 117);
 			this->panel1->TabIndex = 0;
+			this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm1::panel1_Paint);
+			this->panel1->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm1::panel1_MouseDown_1);
+			this->panel1->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm1::panel1_MouseMove_1);
+			this->panel1->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm1::panel1_MouseUp_1);
+			// 
+			// button3
+			// 
+			this->button3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button3->ForeColor = System::Drawing::SystemColors::ControlText;
+			this->button3->ImageAlign = System::Drawing::ContentAlignment::TopRight;
+			this->button3->Location = System::Drawing::Point(521, 0);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(45, 40);
+			this->button3->TabIndex = 17;
+			this->button3->Text = L"X";
+			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &MyForm1::button3_Click);
 			// 
 			// label2
 			// 
@@ -275,30 +303,33 @@ namespace Project1 {
 			// 
 			this->pictureBox1->BackColor = System::Drawing::Color::Black;
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(276, 123);
+			this->pictureBox1->Location = System::Drawing::Point(255, 123);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(290, 282);
+			this->pictureBox1->Size = System::Drawing::Size(311, 282);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
 			this->pictureBox1->TabIndex = 16;
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->WaitOnLoad = true;
 			this->pictureBox1->Click += gcnew System::EventHandler(this, &MyForm1::pictureBox1_Click);
 			// 
-			// button3
+			// label9
 			// 
-			this->button3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->button3->ForeColor = System::Drawing::SystemColors::ControlText;
-			this->button3->ImageAlign = System::Drawing::ContentAlignment::TopRight;
-			this->button3->Location = System::Drawing::Point(521, 0);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(45, 40);
-			this->button3->TabIndex = 17;
-			this->button3->Text = L"X";
-			this->button3->UseVisualStyleBackColor = true;
-			this->button3->Click += gcnew System::EventHandler(this, &MyForm1::button3_Click);
+			this->label9->AutoSize = true;
+			this->label9->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold));
+			this->label9->ForeColor = System::Drawing::SystemColors::ControlLightLight;
+			this->label9->Location = System::Drawing::Point(12, 389);
+			this->label9->Name = L"label9";
+			this->label9->Size = System::Drawing::Size(78, 16);
+			this->label9->TabIndex = 17;
+			this->label9->Text = L"addres_id";
+			this->label9->Click += gcnew System::EventHandler(this, &MyForm1::label9_Click);
+			// 
+			// textBox7
+			// 
+			this->textBox7->Location = System::Drawing::Point(101, 388);
+			this->textBox7->Name = L"textBox7";
+			this->textBox7->Size = System::Drawing::Size(149, 20);
+			this->textBox7->TabIndex = 18;
 			// 
 			// MyForm1
 			// 
@@ -306,6 +337,8 @@ namespace Project1 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::Black;
 			this->ClientSize = System::Drawing::Size(568, 471);
+			this->Controls->Add(this->textBox7);
+			this->Controls->Add(this->label9);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->label8);
@@ -324,6 +357,7 @@ namespace Project1 {
 			this->Controls->Add(this->panel1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"MyForm1";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MyForm1";
 			this->Load += gcnew System::EventHandler(this, &MyForm1::MyForm1_Load);
 			this->panel1->ResumeLayout(false);
@@ -341,6 +375,7 @@ namespace Project1 {
 		char* errorMessage = nullptr;
 
 		int rc = sqlite3_open("C:\\Users\\Ivan\\source\\repos\\bd-vxod\\guiSQLiteStudio1.db", &db);
+
 		if (rc != SQLITE_OK) {
 			MessageBox::Show("Ошибка при открытии базы данных!");
 		}
@@ -349,8 +384,9 @@ namespace Project1 {
 			String^ name = textBox2->Text;
 			String^ surname = textBox3->Text;
 			String^ complect = textBox4->Text;
-			String^ fio = textBox5->Text;
+			String^ fio = textBox5->Text;	
 			String^ sum = textBox6->Text;
+			String^ address_id = textBox7->Text;
 
 			char* charid = static_cast<char*>(Marshal::StringToHGlobalAnsi(id).ToPointer());
 			char* charName = static_cast<char*>(Marshal::StringToHGlobalAnsi(name).ToPointer());
@@ -358,8 +394,10 @@ namespace Project1 {
 			char* charComplect = static_cast<char*>(Marshal::StringToHGlobalAnsi(complect).ToPointer());
 			char* charFIO = static_cast<char*>(Marshal::StringToHGlobalAnsi(fio).ToPointer());
 			char* charSum = static_cast<char*>(Marshal::StringToHGlobalAnsi(sum).ToPointer());
+			char* charaddress_id = static_cast<char*>(Marshal::StringToHGlobalAnsi(address_id).ToPointer());
 
-			String^ query = "INSERT INTO Person (id, Name, Surname, Complect, FIO, Sum) VALUES ('" + id + "', '" + name + "', '" + surname + "', '" + complect + "', '" + fio + "', '" + sum + "');";
+			String^ query = "INSERT INTO Person (id, Name, Surname, Complect, FIO, Sum, address_id)"
+				" VALUES ('" + id + "', '" + name + "', '" + surname + "', '" + complect + "', '" + fio + "', '" + sum + "', '" + address_id + "');";
 			std::string queryStr = msclr::interop::marshal_as<std::string>(query);
 
 			rc = sqlite3_exec(db, queryStr.c_str(), NULL, 0, &errorMessage);
@@ -372,12 +410,15 @@ namespace Project1 {
 			}
 
 			sqlite3_close(db);
+
 			Marshal::FreeHGlobal(IntPtr(charid));
 			Marshal::FreeHGlobal(IntPtr(charName));
 			Marshal::FreeHGlobal(IntPtr(charSurname));
 			Marshal::FreeHGlobal(IntPtr(charComplect));
 			Marshal::FreeHGlobal(IntPtr(charFIO));
 			Marshal::FreeHGlobal(IntPtr(charSum));
+			Marshal::FreeHGlobal(IntPtr(charaddress_id));
+
 		}
 		
 	}
@@ -409,6 +450,33 @@ private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArg
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	Application::Exit();
+
+}
+private: System::Void label9_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+
+private: System::Void panel1_MouseDown_1(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	if (e->Button == System::Windows::Forms::MouseButtons::Left) {
+		isDragging = true;
+		startPoint = e->Location;
+	}
+}
+private: System::Void panel1_MouseMove_1(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	if (isDragging) {
+		Point newLocation;
+		newLocation.X = this->Location.X + (e->Location.X - startPoint.X);
+		newLocation.Y = this->Location.Y + (e->Location.Y - startPoint.Y);
+
+		// You might not need bounds checking for the form itself
+		// unless you want to restrict movement within the screen
+
+		this->Location = newLocation;
+	}
+}
+private: System::Void panel1_MouseUp_1(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	isDragging = false;
 
 }
 };

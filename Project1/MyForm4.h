@@ -58,28 +58,14 @@ namespace Project1 {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private:
 		/// <summary>
 		/// Обязательная переменная конструктора.
 		/// </summary>
 		System::ComponentModel::Container ^components;
+	private:
+		bool isDragging = false;
+		Point startPoint;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -89,6 +75,7 @@ namespace Project1 {
 		void InitializeComponent(void)
 		{
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
@@ -103,7 +90,6 @@ namespace Project1 {
 			this->FIO = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Sum = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->addres_id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
@@ -118,6 +104,25 @@ namespace Project1 {
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(1067, 138);
 			this->panel1->TabIndex = 2;
+			this->panel1->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm4::panel1_MouseDown);
+			this->panel1->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm4::panel1_MouseMove);
+			this->panel1->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm4::panel1_MouseUp);
+			// 
+			// button3
+			// 
+			this->button3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button3->ForeColor = System::Drawing::SystemColors::ControlText;
+			this->button3->ImageAlign = System::Drawing::ContentAlignment::TopRight;
+			this->button3->Location = System::Drawing::Point(1024, 0);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(45, 40);
+			this->button3->TabIndex = 19;
+			this->button3->Text = L"X";
+			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &MyForm4::button3_Click);
 			// 
 			// label2
 			// 
@@ -230,22 +235,6 @@ namespace Project1 {
 			this->addres_id->HeaderText = L"addres_id";
 			this->addres_id->Name = L"addres_id";
 			// 
-			// button3
-			// 
-			this->button3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->button3->ForeColor = System::Drawing::SystemColors::ControlText;
-			this->button3->ImageAlign = System::Drawing::ContentAlignment::TopRight;
-			this->button3->Location = System::Drawing::Point(1024, 0);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(45, 40);
-			this->button3->TabIndex = 19;
-			this->button3->Text = L"X";
-			this->button3->UseVisualStyleBackColor = true;
-			this->button3->Click += gcnew System::EventHandler(this, &MyForm4::button3_Click);
-			// 
 			// MyForm4
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -260,6 +249,7 @@ namespace Project1 {
 			this->Controls->Add(this->panel1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"MyForm4";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MyForm4";
 			this->Load += gcnew System::EventHandler(this, &MyForm4::MyForm4_Load);
 			this->panel1->ResumeLayout(false);
@@ -312,10 +302,10 @@ private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e)
 					String^ complect = gcnew String((char*)sqlite3_column_text(stmt, 3));
 					String^ fio = gcnew String((char*)sqlite3_column_text(stmt, 4));
 					String^ sum = gcnew String((char*)sqlite3_column_text(stmt, 5));
-					String^ addres_id = gcnew String((char*)sqlite3_column_text(stmt, 6));
+					String^ address_id = gcnew String((char*)sqlite3_column_text(stmt, 6));
 
 					// Добавляем новую строку в DataGridView
-					dataGridView1->Rows->Add(id, name, surname, complect, fio, sum, addres_id);
+					dataGridView1->Rows->Add(id, name, surname, complect, fio, sum, address_id);
 				}
 				else {
 					// Если строка не найдена, выводим сообщение об ошибке
@@ -344,6 +334,28 @@ private: System::Void MyForm4_Load(System::Object^ sender, System::EventArgs^ e)
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	Application::Exit();
+}
+private: System::Void panel1_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	if (e->Button == System::Windows::Forms::MouseButtons::Left) {
+		isDragging = true;
+		startPoint = e->Location;
+	}
+}
+private: System::Void panel1_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	if (isDragging) {
+		Point newLocation;
+		newLocation.X = this->Location.X + (e->Location.X - startPoint.X);
+		newLocation.Y = this->Location.Y + (e->Location.Y - startPoint.Y);
+
+		// You might not need bounds checking for the form itself
+		// unless you want to restrict movement within the screen
+
+		this->Location = newLocation;
+	}
+}
+private: System::Void panel1_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	isDragging = false;
+
 }
 };
 }

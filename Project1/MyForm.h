@@ -49,6 +49,9 @@ namespace Project1 {
 	private: System::Windows::Forms::Button^ button2;
 
 	private: System::ComponentModel::IContainer^ components;
+	private:
+		bool isDragging = false;
+		Point startPoint;
 
 
 
@@ -74,8 +77,8 @@ namespace Project1 {
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
-			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			this->panel1->SuspendLayout();
@@ -144,18 +147,9 @@ namespace Project1 {
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(494, 111);
 			this->panel1->TabIndex = 6;
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label1->ForeColor = System::Drawing::SystemColors::ControlText;
-			this->label1->Location = System::Drawing::Point(69, 22);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(361, 64);
-			this->label1->TabIndex = 0;
-			this->label1->Text = L"Авторизация";
+			this->panel1->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::panel1_MouseDown);
+			this->panel1->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::panel1_MouseMove);
+			this->panel1->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::panel1_MouseUp);
 			// 
 			// button2
 			// 
@@ -173,6 +167,18 @@ namespace Project1 {
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
 			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label1->ForeColor = System::Drawing::SystemColors::ControlText;
+			this->label1->Location = System::Drawing::Point(70, 29);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(361, 64);
+			this->label1->TabIndex = 0;
+			this->label1->Text = L"Авторизация";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -187,6 +193,7 @@ namespace Project1 {
 			this->Controls->Add(this->pictureBox1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"MyForm";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
@@ -233,6 +240,27 @@ private: System::Void panel1_Paint(System::Object^ sender, System::Windows::Form
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	Application::Exit();
 
+}
+private: System::Void panel1_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	if (e->Button == System::Windows::Forms::MouseButtons::Left) {
+		isDragging = true;
+		startPoint = e->Location;
+	}
+}
+private: System::Void panel1_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	if (isDragging) {
+		Point newLocation;
+		newLocation.X = this->Location.X + (e->Location.X - startPoint.X);
+		newLocation.Y = this->Location.Y + (e->Location.Y - startPoint.Y);
+
+		// You might not need bounds checking for the form itself
+		// unless you want to restrict movement within the screen
+
+		this->Location = newLocation;
+	}
+}
+private: System::Void panel1_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	isDragging = false;
 }
 };
 }

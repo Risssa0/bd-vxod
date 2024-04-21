@@ -47,13 +47,27 @@ namespace Project1 {
 
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ PersonID;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ id;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ name;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ surname;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ complect;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ fio;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ sum;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ addres_id;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ address_id;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	private:
 		/// <summary>
@@ -69,15 +83,15 @@ namespace Project1 {
 		void InitializeComponent(void)
 		{
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->PersonID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->surname = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->complect = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->fio = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->sum = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->addres_id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->address_id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -86,21 +100,47 @@ namespace Project1 {
 			this->dataGridView1->BackgroundColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(7) {
-				this->PersonID,
-					this->name, this->surname, this->complect, this->fio, this->sum, this->addres_id
+				this->id, this->name,
+					this->surname, this->complect, this->fio, this->sum, this->address_id
 			});
-			this->dataGridView1->Location = System::Drawing::Point(-41, 12);
+			this->dataGridView1->Location = System::Drawing::Point(-41, -3);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->ReadOnly = true;
-			this->dataGridView1->Size = System::Drawing::Size(744, 412);
+			this->dataGridView1->Size = System::Drawing::Size(744, 427);
 			this->dataGridView1->TabIndex = 0;
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm5::dataGridView1_CellContentClick);
 			// 
-			// PersonID
+			// button2
 			// 
-			this->PersonID->HeaderText = L"PersonID";
-			this->PersonID->Name = L"PersonID";
-			this->PersonID->ReadOnly = true;
+			this->button2->BackColor = System::Drawing::Color::BlueViolet;
+			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button2->Location = System::Drawing::Point(0, 469);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(703, 33);
+			this->button2->TabIndex = 18;
+			this->button2->Text = L"Назад";
+			this->button2->UseVisualStyleBackColor = false;
+			this->button2->Click += gcnew System::EventHandler(this, &MyForm5::button2_Click);
+			// 
+			// button1
+			// 
+			this->button1->BackColor = System::Drawing::Color::BlueViolet;
+			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button1->Location = System::Drawing::Point(0, 430);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(703, 33);
+			this->button1->TabIndex = 19;
+			this->button1->Text = L"Показать базу данных";
+			this->button1->UseVisualStyleBackColor = false;
+			this->button1->Click += gcnew System::EventHandler(this, &MyForm5::button1_Click);
+			// 
+			// id
+			// 
+			this->id->HeaderText = L"id";
+			this->id->Name = L"id";
+			this->id->ReadOnly = true;
 			// 
 			// name
 			// 
@@ -133,37 +173,11 @@ namespace Project1 {
 			this->sum->Name = L"sum";
 			this->sum->ReadOnly = true;
 			// 
-			// button2
+			// address_id
 			// 
-			this->button2->BackColor = System::Drawing::Color::BlueViolet;
-			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->button2->Location = System::Drawing::Point(0, 469);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(703, 33);
-			this->button2->TabIndex = 18;
-			this->button2->Text = L"Назад";
-			this->button2->UseVisualStyleBackColor = false;
-			this->button2->Click += gcnew System::EventHandler(this, &MyForm5::button2_Click);
-			// 
-			// button1
-			// 
-			this->button1->BackColor = System::Drawing::Color::BlueViolet;
-			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->button1->Location = System::Drawing::Point(0, 430);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(703, 33);
-			this->button1->TabIndex = 19;
-			this->button1->Text = L"Показать базу данных";
-			this->button1->UseVisualStyleBackColor = false;
-			this->button1->Click += gcnew System::EventHandler(this, &MyForm5::button1_Click);
-			// 
-			// addres_id
-			// 
-			this->addres_id->HeaderText = L"addres_id";
-			this->addres_id->Name = L"addres_id";
-			this->addres_id->ReadOnly = true;
+			this->address_id->HeaderText = L"addres_id";
+			this->address_id->Name = L"address_id";
+			this->address_id->ReadOnly = true;
 			// 
 			// MyForm5
 			// 
@@ -176,6 +190,7 @@ namespace Project1 {
 			this->Controls->Add(this->dataGridView1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"MyForm5";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MyForm5";
 			this->Load += gcnew System::EventHandler(this, &MyForm5::MyForm5_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
@@ -214,15 +229,16 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	// Итерируемся по результатам запроса и выводим данные в DataGridView
 	while ((rc = sqlite3_step(stmt)) == SQLITE_ROW) {
 		// Получаем значения из текущей строки
-		String^ personID = gcnew String((char*)sqlite3_column_text(stmt, 0));
+		String^ id = gcnew String((char*)sqlite3_column_text(stmt, 0));
 		String^ name = gcnew String((char*)sqlite3_column_text(stmt, 1));
 		String^ surname = gcnew String((char*)sqlite3_column_text(stmt, 2));
 		String^ complect = gcnew String((char*)sqlite3_column_text(stmt, 3));
 		String^ fio = gcnew String((char*)sqlite3_column_text(stmt, 4));
 		String^ sum = gcnew String((char*)sqlite3_column_text(stmt, 5));
+		String^ address_id = gcnew String((char*)sqlite3_column_text(stmt, 6));
 
 		// Добавляем новую строку в DataGridView
-		dataGridView1->Rows->Add(personID, name, surname, complect, fio, sum);
+		dataGridView1->Rows->Add(id, name, surname, complect, fio, sum, address_id);
 	}
 
 	// Очищаем подготовленный запрос
