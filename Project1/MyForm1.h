@@ -26,6 +26,7 @@ namespace Project1 {
 			//TODO: добавьте код конструктора
 			//
 			pictureBox1->SizeMode = PictureBoxSizeMode::StretchImage;
+			button1->Enabled = false;
 		}
 
 	protected:
@@ -165,9 +166,11 @@ namespace Project1 {
 			// button1
 			// 
 			this->button1->BackColor = System::Drawing::Color::BlueViolet;
-			this->button1->Location = System::Drawing::Point(385, 428);
+			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button1->Location = System::Drawing::Point(329, 429);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(103, 31);
+			this->button1->Size = System::Drawing::Size(118, 31);
 			this->button1->TabIndex = 2;
 			this->button1->Text = L"Добавить";
 			this->button1->UseVisualStyleBackColor = false;
@@ -175,7 +178,7 @@ namespace Project1 {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(101, 125);
+			this->textBox1->Location = System::Drawing::Point(129, 125);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(148, 20);
 			this->textBox1->TabIndex = 3;
@@ -183,7 +186,7 @@ namespace Project1 {
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(101, 167);
+			this->textBox2->Location = System::Drawing::Point(129, 167);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(148, 20);
 			this->textBox2->TabIndex = 4;
@@ -191,7 +194,7 @@ namespace Project1 {
 			// 
 			// textBox3
 			// 
-			this->textBox3->Location = System::Drawing::Point(101, 212);
+			this->textBox3->Location = System::Drawing::Point(129, 212);
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(148, 20);
 			this->textBox3->TabIndex = 5;
@@ -199,7 +202,7 @@ namespace Project1 {
 			// 
 			// textBox4
 			// 
-			this->textBox4->Location = System::Drawing::Point(101, 259);
+			this->textBox4->Location = System::Drawing::Point(129, 259);
 			this->textBox4->Name = L"textBox4";
 			this->textBox4->Size = System::Drawing::Size(148, 20);
 			this->textBox4->TabIndex = 6;
@@ -207,7 +210,7 @@ namespace Project1 {
 			// 
 			// textBox5
 			// 
-			this->textBox5->Location = System::Drawing::Point(101, 303);
+			this->textBox5->Location = System::Drawing::Point(129, 305);
 			this->textBox5->Name = L"textBox5";
 			this->textBox5->Size = System::Drawing::Size(148, 20);
 			this->textBox5->TabIndex = 7;
@@ -215,7 +218,7 @@ namespace Project1 {
 			// 
 			// textBox6
 			// 
-			this->textBox6->Location = System::Drawing::Point(101, 345);
+			this->textBox6->Location = System::Drawing::Point(128, 347);
 			this->textBox6->Name = L"textBox6";
 			this->textBox6->Size = System::Drawing::Size(149, 20);
 			this->textBox6->TabIndex = 8;
@@ -294,9 +297,11 @@ namespace Project1 {
 			// button2
 			// 
 			this->button2->BackColor = System::Drawing::Color::BlueViolet;
-			this->button2->Location = System::Drawing::Point(494, 428);
+			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button2->Location = System::Drawing::Point(463, 428);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(62, 31);
+			this->button2->Size = System::Drawing::Size(103, 31);
 			this->button2->TabIndex = 15;
 			this->button2->Text = L"Назад";
 			this->button2->UseVisualStyleBackColor = false;
@@ -306,9 +311,9 @@ namespace Project1 {
 			// 
 			this->pictureBox1->BackColor = System::Drawing::Color::Black;
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(255, 123);
+			this->pictureBox1->Location = System::Drawing::Point(285, 123);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(311, 282);
+			this->pictureBox1->Size = System::Drawing::Size(271, 261);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
 			this->pictureBox1->TabIndex = 16;
 			this->pictureBox1->TabStop = false;
@@ -329,8 +334,9 @@ namespace Project1 {
 			// 
 			// comboBox1
 			// 
+			this->comboBox1->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Location = System::Drawing::Point(101, 386);
+			this->comboBox1->Location = System::Drawing::Point(128, 388);
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(147, 21);
 			this->comboBox1->TabIndex = 18;
@@ -339,11 +345,11 @@ namespace Project1 {
 			// button4
 			// 
 			this->button4->BackColor = System::Drawing::Color::BlueViolet;
-			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button4->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button4->Location = System::Drawing::Point(255, 428);
+			this->button4->Location = System::Drawing::Point(3, 428);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(124, 31);
+			this->button4->Size = System::Drawing::Size(117, 31);
 			this->button4->TabIndex = 19;
 			this->button4->Text = L"Получить адреса";
 			this->button4->UseVisualStyleBackColor = false;
@@ -500,6 +506,8 @@ private: System::Void panel1_MouseUp_1(System::Object^ sender, System::Windows::
 
 }
 private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+	// Включить кнопку button1, если пользователь выбрал список
+	button1->Enabled = true;
 }
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ query = "SELECT id FROM Address;";
@@ -538,5 +546,10 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 	// Закрываем базу данных
 	sqlite3_close(db);
 }
+private: System::Void Form1_Load(System::Object^ sender, System::EventArgs^ e) {
+	// Отключить кнопку button1
+	button1->Enabled = false;
+}
+
 };
 }
