@@ -55,20 +55,6 @@ namespace Project1 {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ sum;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ address_id;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private:
 		/// <summary>
 		/// Обязательная переменная конструктора.

@@ -28,6 +28,19 @@ namespace Project1 {
 			pictureBox1->SizeMode = PictureBoxSizeMode::StretchImage;
 			button1->Enabled = false;
 		}
+	private:
+		std::string utf8_encode(const std::wstring& wstr)
+		{
+			if (wstr.empty()) {
+				return std::string();
+			}
+
+			int size_needed = WideCharToMultiByte(CP_UTF8, 0, &wstr[0], (int)wstr.size(), NULL, 0, NULL, NULL);
+			std::string strTo(size_needed, 0);
+			WideCharToMultiByte(CP_UTF8, 0, &wstr[0], (int)wstr.size(), &strTo[0], size_needed, NULL, NULL);
+
+			return strTo;
+		}
 
 	protected:
 		/// <summary>
@@ -414,16 +427,16 @@ namespace Project1 {
 			String^ sum = textBox6->Text;
 			String^ address_id = comboBox1->Text;
 
-			char* charid = static_cast<char*>(Marshal::StringToHGlobalAnsi(id).ToPointer());
-			char* charName = static_cast<char*>(Marshal::StringToHGlobalAnsi(name).ToPointer());
-			char* charSurname = static_cast<char*>(Marshal::StringToHGlobalAnsi(surname).ToPointer());
-			char* charComplect = static_cast<char*>(Marshal::StringToHGlobalAnsi(complect).ToPointer());
-			char* charFIO = static_cast<char*>(Marshal::StringToHGlobalAnsi(fio).ToPointer());
-			char* charSum = static_cast<char*>(Marshal::StringToHGlobalAnsi(sum).ToPointer());
-			char* charaddress_id = static_cast<char*>(Marshal::StringToHGlobalAnsi(address_id).ToPointer());
+			std::string utf8Id = utf8_encode(msclr::interop::marshal_as<std::wstring>(id));
+			std::string utf8Name = utf8_encode(msclr::interop::marshal_as<std::wstring>(name));
+			std::string utf8Surname = utf8_encode(msclr::interop::marshal_as<std::wstring>(surname));
+			std::string utf8Complect = utf8_encode(msclr::interop::marshal_as<std::wstring>(complect));
+			std::string utf8Fio = utf8_encode(msclr::interop::marshal_as<std::wstring>(fio));
+			std::string utf8Sum = utf8_encode(msclr::interop::marshal_as<std::wstring>(sum));
+			std::string utf8AddressId = utf8_encode(msclr::interop::marshal_as<std::wstring>(address_id));
 
 			String^ query = "INSERT INTO Person (id, Name, Surname, Complect, FIO, Sum, address_id)"
-				" VALUES ('" + id + "', '" + name + "', '" + surname + "', '" + complect + "', '" + fio + "', '" + sum + "', '" + address_id + "');";
+				" VALUES ('" + gcnew String(utf8Id.c_str()) + "', '" + gcnew String(utf8Name.c_str()) + "', '" + gcnew String(utf8Surname.c_str()) + "', '" + gcnew String(utf8Complect.c_str()) + "', '" + gcnew String(utf8Fio.c_str()) + "', '" + gcnew String(utf8Sum.c_str()) + "', '" + gcnew String(utf8AddressId.c_str()) + "');";
 			std::string queryStr = msclr::interop::marshal_as<std::string>(query);
 
 			rc = sqlite3_exec(db, queryStr.c_str(), NULL, 0, &errorMessage);
@@ -437,13 +450,6 @@ namespace Project1 {
 
 			sqlite3_close(db);
 
-			Marshal::FreeHGlobal(IntPtr(charid));
-			Marshal::FreeHGlobal(IntPtr(charName));
-			Marshal::FreeHGlobal(IntPtr(charSurname));
-			Marshal::FreeHGlobal(IntPtr(charComplect));
-			Marshal::FreeHGlobal(IntPtr(charFIO));
-			Marshal::FreeHGlobal(IntPtr(charSum));
-			Marshal::FreeHGlobal(IntPtr(charaddress_id));
 
 		}
 		

@@ -212,17 +212,20 @@ namespace Project1 {
 			// Выполняем SQL-запрос
 			rc = sqlite3_exec(db, queryStr.c_str(), NULL, 0, &errorMessage);
 
-			// Обрабатываем результат выполнения запроса
-			if (rc != SQLITE_OK) {
-				MessageBox::Show("Ошибка при выполнении SQL-запроса!");
+			if (rc == SQLITE_OK) {
+				int changes = sqlite3_changes(db); // Получаем количество измененных строк
+
+				if (changes > 0) {
+					MessageBox::Show("Строка успешно удалена из базы данных!");
+				}
+				else {
+					MessageBox::Show("Нет строки с указанным id в базе данных!");
+				}
 			}
 			else {
-				MessageBox::Show("Строка успешно удалена из базы данных!");
+				MessageBox::Show("Ошибка при выполнении SQL-запроса!");
 			}
 
-			// ...
-
-			// Очищаем выделенную память
 			Marshal::FreeHGlobal(IntPtr(charid));
 		}
 	}
